@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 let info = require("../db/info")
 
-let profile = {
+let users = {
     general: function(req,res){
         res.render("profile", {"info": info})
     },
@@ -12,4 +12,4 @@ let profile = {
 
 }
 
-module.exports = profile;
+module.exports = users;
