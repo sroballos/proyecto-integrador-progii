@@ -8,8 +8,10 @@ let product = {
     },
     add: function(req,res){
         res.render("product-add")
+    },
+    searchresults: function(req,res){
+        res.render("search-results")
     }
-
-}
+    }
 
 module.exports = product;
