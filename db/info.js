@@ -26,13 +26,13 @@ const albumes = {
             ]
         },
         {
-            imagen: "/images/products/inbetweendreams.jpg",
-            producto: "In Between Dreams",
-            descripcion: "Jack Johnson",
+            imagen: "/images/products/sadnecessary.jpeg",
+            producto: "Sadnecessary",
+            descripcion: "Milky Chance",
             comentarios: [
                 {
                     nombre_usuario: "Usuario2",
-                    texto_comentario: "Comentario sobre In Between Dreams",
+                    texto_comentario: "Comentario sobre Sadnecessary",
                     imagen_perfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
