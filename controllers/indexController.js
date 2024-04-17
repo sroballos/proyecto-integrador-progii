@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 
-let product = {
+let index = {
     index: function(req,res){
-        res.render("index")
+        return res.render("index")
     }
 };
 
-module.exports = product;
+module.exports = index;

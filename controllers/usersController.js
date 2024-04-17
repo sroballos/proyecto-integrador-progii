@@ -4,16 +4,16 @@ let info = require("../db/info")
 
 let users = {
     general: function(req,res){
-        res.render("profile", {"info": info})
+        return res.render("profile", {"info": info})
     },
     edit: function(req,res){
-        res.render("profile-edit")
+        return res.render("profile-edit")
     },
     register: function(req,res){
-        res.render("register")
+        return res.render("register")
     },
     login: function(req,res){
-        res.render("login")
+        return res.render("login")
     }
 };
 
