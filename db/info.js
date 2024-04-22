@@ -5,7 +5,7 @@ let router = app.Router();
 const albumes = {
     usuario: {
         email: "tomas@example.com",
-        nombre: "Tomás",
+        nombre: "Tomás Ricci",
         contraseña: "123",
         fecha_de_nacimiento: "12/01/2005",
         nro_de_documento: 123456789,
