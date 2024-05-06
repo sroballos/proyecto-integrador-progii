@@ -8,14 +8,14 @@ let users = {
         return res.render("profile", {"info": info})
     },
     edit: function(req,res){
-        return res.render("profile-edit")
+        return res.render("profile-edit", {"info": info})
     },
     register: function(req,res){
-        return res.render("register")
+        return res.render("register", {"info": info})
     },
     login: function(req,res){
-        return res.render("login")
-    }
+        return res.render("login", {"info": info})
+    },
 };
 
 module.exports = users;
