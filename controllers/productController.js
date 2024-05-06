@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+let db = require("../database/models")
 
 let product = {
     general: function(req,res){
