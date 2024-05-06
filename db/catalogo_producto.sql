@@ -1,1 +1,46 @@
-SELECT * FROM catalogo_producto.products;
+CREATE SCHEMA catalogo_producto;
+USE catalogo_producto;
+
+CREATE TABLE users (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    passW VARCHAR(100) NOT NULL,
+    dateBorn DATETIME,
+    dni INT NOT NULL,
+    profilePic VARCHAR(100),
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deletedAT TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
+    );
+
+CREATE TABLE products(
+	user_id INT UNSIGNED,
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    artist VARCHAR (100) NOT NULL,
+    release_date DATE NOT NULL,
+    image VARCHAR(100) NOT NULL,
+    description TEXT,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	deletedAt TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    
+    );
+    
+CREATE TABLE comments (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id_user INT UNSIGNED,
+    id_products INT UNSIGNED,
+    coment TEXT,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deletedAt  TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_user) REFERENCES users(id),
+    FOREIGN KEY (id_products) REFERENCES products(id)
+   
+);
+    
+INSERT INTO catalogo_producto.products
+VALUES (null, DEFAULT, "Abbey Road", "The Beatles", "1969/09/26", "WIP", "El mejor álbum en la historia de la música", null, null, null)
