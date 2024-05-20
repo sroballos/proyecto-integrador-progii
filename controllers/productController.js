@@ -13,6 +13,10 @@ let product = {
     },
     searchresults: function(req,res){
         return res.render("search-results", {"info": info})
+    },
+    store: function(req,res){
+        db.Product.create(req.body)
+        return res.redirect("/profile")
     }
     }
 
