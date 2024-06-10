@@ -3,6 +3,7 @@ var router = express.Router();
 let info = require("../db/info")
 let db = require("../database/models");
 const User = require('../database/models/User');
+const { validationResult } = require("express-validator");
 
 let users = {
     general: function(req,res){
@@ -11,22 +12,16 @@ let users = {
     edit: function(req,res){
         return res.render("profile-edit", {"info": info})
     },
-    register: function(req,res){
-        return res.render("register", {"info": info})
+    register: (req, res) => {
+        let errors = validationResult(req);
+        if (errors.isEmpty()){
+
+        } else {
+            res.render ("register",{errors: errors.mapped(), old: req.body});
+        }
     },
     login: function(req,res){
         return res.render("login", {"info": info})
-    },
-    store: (req,res) => {
-        let errors = validaciones(req);
-        if (errors.isEmpty()) {
-            let user = req.body;
-            userID = User.create(user);
-            res.redirect("/users/" + userID);
-        } else {
-            res.render("users/create")
-        }
-
     },
 };
 
