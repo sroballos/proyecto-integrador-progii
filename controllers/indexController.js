@@ -7,11 +7,10 @@ let index = {
     index: function(req,res){
         db.Product.findAll()
         .then(function(data){
-            res.send(data)
+           return res.render("index",{info:data})
         })
-        .catch()
-        return console.log("hola")
-        res.render("index", {"info":info})
+        .catch(function(error){
+        return console.log(error)})
     }
 };
 

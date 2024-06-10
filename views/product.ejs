@@ -3,30 +3,30 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title">Abbey Road</h2> 
+			<h2 class="products-title"><%= info.title %></h2> 
 			<p class="product-detail-description">
 				<a href="/product/add">Editar</a>
 			</p>
 		</div>
 		<div class="product-detail">
 			<div class="row">
+			<% if (info != -1){ %>
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="./images/products/abbeyroad.jpg" alt="" class="product-detail-img">
+					<img src="/images/products/<%= info.image %>" alt="<%= info.title %>" class="product-detail-img">
 					<p class="product-detail-description">
-						Abbey Road es el undécimo álbum de estudio (duodécimo en estados unidos) publicado por la banda británica de rock The Beatles, 
-						sería lanzado el 26 de septiembre de 1969 en Reino Unido por Apple Records. Las grabaciones de Abbey Road comenzarían en abril de 1969,
-						haciendo de este el último álbum grabado por la banda, 
-						ya que Let It Be, lanzado en 1970, había sido grabado con anterioridad.
+						Fecha de Publicación: <%= info.release_date %>
+					</p>
+					<p class="product-detail-description">
+						<%= info.description %>
 					</p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<article>
-							<img src="<%= info.productos[0].comentarios[0].imagen_perfil %>" alt="">
+							<img src="" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/profile"><%= info.productos[0].comentarios[0].nombre_usuario %>: </a> </strong>
-								<%= info.productos[0].comentarios[0].texto %></p>
+								<strong> <a href="/profile">WORK IN PROGRESS</p>
 							</div>
 						</article>
 						<article>
@@ -71,6 +71,9 @@
 					</form>
 					<hr>
 				</div>
+			<%} else{ %>
+				<h2 style="margin-left: 40px;"> Su álbum no pudo ser encontrado. Por favor, intente con otro álbum o <a href="/">vuelva al home</a></h2>
+			<% } %>
 			</div>
 		</div>
 	</div>

@@ -45,6 +45,7 @@ module.exports = function(sequelize, dataTypes){
             as: "user",
             foreignKey: "id_user"
         })
+    //PONER RELACIÓN USUARIO PRODUCTO
     }
     return User
 }
