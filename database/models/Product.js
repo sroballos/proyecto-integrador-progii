@@ -42,12 +42,12 @@ module.exports = function(sequelize, dataTypes){
         underscored: false
     }
 
-    Product.associate =function(models){
-    Product.hasMany(models.Comment, {
-        as: "products",
-        foreignKey:"id_products"
-    })
-    };   
     let Product = sequelize.define(alias, cols, config)
+    Product.associate =function(models){
+        Product.hasMany(models.Comment, {
+            as: "products",
+            foreignKey:"id_products"
+        })
+        };   
     return Product
 }

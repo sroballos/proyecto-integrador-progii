@@ -39,12 +39,12 @@ module.exports = function(sequelize, dataTypes){
         underscored: false
     }
 
+    let User = sequelize.define(alias, cols, config)
     User.associate = function(models){
         User.hasMany(models.Comment,{
             as: "user",
             foreignKey: "id_user"
         })
     }
-    let User = sequelize.define(alias, cols, config)
     return User
 }
