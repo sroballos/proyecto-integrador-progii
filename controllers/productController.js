@@ -11,7 +11,6 @@ let product = {
         })
         .then(function(data){
             if (data){
-                return res.send(data)
             return res.render("product", {info:data})} else{
             return res.render("product", {info:-1})
             }
