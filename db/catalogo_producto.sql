@@ -42,12 +42,9 @@ CREATE TABLE comments (
    
 );
     
-INSERT INTO catalogo_producto.products
-VALUES (null, DEFAULT, "Abbey Road", "The Beatles", "1969/09/26", "WIP", "El mejor álbum en la historia de la música", null, null, null)
-
-USE catalogo_producto;
 INSERT INTO products (user_id, title, artist, release_date, image, description)
- VALUES (DEFAULT, 'The Best of Sade', 'Sade', '1994-10-31', 'thebestofsade.jpg', 'The Best of Sade es el primer álbum de grandes éxitos de la banda británica Sade, publicado por Epic Records en el Reino Unido el 31 de octubre de 1994 y en los Estados Unidos el 4 de noviembre de 1994.'),
+ VALUES (DEFAULT, "Abbey Road", "The Beatles", "1969-09-26", "abbeyroad.jpg", "El mejor álbum en la historia de la música."),
+        (DEFAULT, 'The Best of Sade', 'Sade', '1994-10-31', 'thebestofsade.jpg', 'The Best of Sade es el primer álbum de grandes éxitos de la banda británica Sade, publicado por Epic Records en el Reino Unido el 31 de octubre de 1994 y en los Estados Unidos el 4 de noviembre de 1994.'),
 		(DEFAULT, 'The Divine Feminine', 'Mac Miller', '2016-09-16', 'thedivinefeminine.jpg', 'The Divine Feminine —en español: La Divina Femenina — es el cuarto álbum de estudio del rapero estadounidense Mac Miller. Fue lanzado el 16 de septiembre de 2016 por REMember Music y Warner Bros. Records.'),
 		(DEFAULT, 'nadie sabe lo que va a pasar mañana', 'Bad Bunny', '2023-10-13', 'nadiesabeloquevaapasarmañana.jpg', 'Nadie sabe lo que va a pasar mañana es el quinto álbum de estudio del cantante puertorriqueño Bad Bunny. El álbum fue publicado el viernes 13 de octubre de 2023 a través de Rimas Entertainment, precediendo el lanzamiento de su anterior álbum Un verano sin ti.'),
 		(DEFAULT, 'Oktubre', 'Patricio Rey y sus Redonditos de Ricota', '1986-10-04', 'oktubre.jpg', 'Oktubre es el segundo álbum de estudio del grupo de rock argentino Patricio Rey y sus Redonditos de Ricota. Fue editado en octubre de 1986.'),
