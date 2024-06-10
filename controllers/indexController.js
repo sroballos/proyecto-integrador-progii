@@ -5,13 +5,14 @@ let db = require("../database/models")
 
 let index = {
     index: function(req,res){
-        db.Product.findAll()
-        .then(function(data){
-            res.send(data)
+        db.Product.findAll({
+            order: [["id", "DESC"]],
         })
-        .catch()
-        return console.log("hola")
-        res.render("index", {"info":info})
+        .then(function(data){
+           return res.render("index",{info:data})
+        })
+        .catch(function(error){
+        return console.log(error)})
     }
 };
 
