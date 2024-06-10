@@ -55,3 +55,13 @@ INSERT INTO products (user_id, title, artist, release_date, image, description)
 		(DEFAULT, 'Soda Stereo (Remastered)', 'Soda Stereo', '1984-02-06', 'sodastereo.jpg', 'Soda Stereo es el nombre del álbum debut de estudio homónimo grabado por el grupo argentino Soda Stereo. Fue lanzado al mercado bajo el sello discográfico CBS Discos el 27 de agosto de 1984. La producción de este álbum debut estuvo a cargo de Federico Moura, vocalista y líder de Virus.'),
 		(DEFAULT, 'This Old Dog', 'Mac DeMarco', '2017-05-05', 'thisolddog.jpg', 'This Old Dog es el tercer álbum de estudio de larga duración del cantautor y multiinstrumentista Mac DeMarco, lanzado el 5 de mayo de 2017 a través de Captured Tracks. Tras el lanzamiento de Another One, DeMarco se mudó de su aislado hogar de Queens a una casa en Los Ángeles para crear el álbum.');
         (DEFAULT, 'Revolver', 'The Beatles', '1966-08-5', 'revolver.webp', 'Revolver es el séptimo álbum de estudio de la banda británica de rock The Beatles lanzado el 5 de agosto de 1966 por EMI. Fue el último álbum lanzado antes de que la banda decidiera abandonar los escenarios y las giras, a favor de la experimentación en los estudios de grabación. Ha sido considerado como uno de los álbumes más grandes e innovadores en la historia de la música popular, con reconocimiento centrado en su variedad de estilos musicales, diversos sonidos y contenido lírico. ');
+
+INSERT INTO catalogo_producto.users(email, dateBorn, dni)
+VALUES("paul@mccartney.com", 1945-05-05, 0),
+("jagger@rollingstones.com", 1943-03-20, 2),
+("sroballos@udesa.edu.ar", 2005-04-29, 46197272),
+("leonel@messi.com", 1987-06-24, 28675493)
+
+INSERT INTO catalogo_producto.comments
+VALUES('4', '1', '14', 'ABBEY ROAD', '2024-06-10 17:48:35', '2024-06-10 17:48:35'),
+('5', '2', '14', 'Sucked. Couldnt get me No Satisfaction', '2024-06-10 18:09:02', '2024-06-10 18:09:30', '2024-06-10 18:09:30')

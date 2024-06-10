@@ -6,9 +6,12 @@ let info = require("../db/info")
 
 let product = {
     general: function(req,res){
-        db.Product.findByPk(req.params.id)
+        db.Product.findByPk(req.params.id,{
+            include: [{association:"user"}, {association:"comments"}]
+        })
         .then(function(data){
             if (data){
+                return res.send(data)
             return res.render("product", {info:data})} else{
             return res.render("product", {info:-1})
             }
