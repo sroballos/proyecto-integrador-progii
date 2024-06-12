@@ -10,16 +10,16 @@ module.exports = function(sequelize, dataTypes){
         email:{
             type: dataTypes.STRING(100)
         },
-        password:{
+        passW:{
             type: dataTypes.STRING(100)
         },
-        dateborn:{
+        dateBorn:{
             type: dataTypes.DATE
         },
         dni:{
             type: dataTypes.INTEGER
         },
-        profilepic:{
+        profilePic:{
             type: dataTypes.STRING(100)
         },
         createdAt:{
