@@ -9,6 +9,13 @@ let users = {
     general: function(req,res){
         return res.render("profile", {"info": info})
     },
+    register: function(req,res){
+// Tomi, puse estos controllers porque si no no funciona nodemon
+    return res.render("profile", {"info": info})
+    },
+    login: function(req,res){
+        return res.render("profile", {"info": info})
+        },
     edit: function(req,res){
         return res.render("profile-edit", {"info": info})
     },
