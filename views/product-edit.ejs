@@ -1,0 +1,40 @@
+<%- include("partials/headerLogueado.ejs") %>
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Editar producto</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+			<div class="col-12">
+				<form action="FIJARSE EN ESTO" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="name" value="<%= info.id %>" required>
+					<label for="nombre">Nombre del álbum:</label>
+					<input type="text" id="title" name="title" value="<%= info.title %>" required>
+					<br><br>
+                    <label for="artista">Artista:</label>
+					<input type="text" id="artist" name="artist" value="<%= info.artist %>" required>
+					<br><br>
+                    <label for="releasedate">Fecha de publicación:</label>
+					<input type="date" id="release_date" name="release_date" value="<%= info.release_date %>" required>
+					<br><br>
+                    <label for="imagen">Imagen:</label>
+					<input type="text" id="imagen" name="imagen" accept="image/*" value="image/<%= info.title %>" required>
+					<br><br>
+					<label for="descripcion">Descripción:</label>
+					<textarea id="descripcion" name="descripcion" rows="4" required><%= info.description %></textarea>
+					<br><br>
+					<button type="submit">Editar Producto</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+<!-- footer -->
+<%- include("partials/footer.ejs") %>
+<!-- /footer -->
+</body>
+
+</html>

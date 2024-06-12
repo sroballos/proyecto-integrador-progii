@@ -5,7 +5,7 @@
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= info.title %></h2> 
 			<p class="product-detail-description">
-				<a href="/product/add">Editar</a>
+				<a href="/product/edit/<%= info.id %>">Editar</a>
 			</p>
 		</div>
 		<div class="product-detail">
@@ -22,48 +22,20 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
+						<% for (j=0; j < info.comments.length; j++){ %>
 						<article>
-							<img src="" alt="">
+							<% if (info.comments[j].commentUser.profilepic){ %>
+							<img src="/images/users/<%= info.comments[j].commentUser.profilepic %>" alt="User PFP">
+							<% } else{ %>
+								<img src="https://via.placeholder.com/35" alt="User PFP">
+							<% } %>
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/profile">WORK IN PROGRESS</p>
+									<strong> <a href="/profile/<%= info.comments[j].id_user %>"><%= info.comments[j].commentUser.email %> </a> </strong>
+									<%= info.comments[j].coment %></p>
 							</div>
 						</article>
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur.</p>
-							</div>
-						</article>
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									</p>
-							</div>
-						</article>
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet.</p>
-							</div>
-						</article>
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Tempora doloribus enim aspernatur fugit corrupti suscipit sit dolore</p>
-							</div>
-						</article>
-
+						<% } %>
 					</section>
 					<form class="form" action="/" method="GET">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
