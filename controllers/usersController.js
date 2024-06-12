@@ -4,7 +4,6 @@ let info = require("../db/info")
 const db = require("../database/models");
 const User = require('../database/models/User');
 const { validationResult } = require("express-validator");
-const { store } = require('./productController');
 
 let users = {
     general: function(req,res){
@@ -13,21 +12,16 @@ let users = {
     edit: function(req,res){
         return res.render("profile-edit", {"info": info})
     },
-    register: function(req, res) {
-        let errors = validationResult(req);
-        if (errors.isEmpty()) {
-            res.render("register", { title: "Formulario de Registro" });
-        } else {
-            res.render("register", { title: "Formulario de Registro", errors: errors.mapped(), old: req.body });
-        }
-    },
-    login: function(req,res){
-        return res.render("login", {"info": info})
-    },
-
-    store: function(req, res){
-        let form = req.body;
-
+    store: function (req, res) {      
+        const resultValidation = validationResult(req)    
+        if (!resultValidation.isEmpty()) {
+            console.log("resultValidation:", JSON.stringify(resultValidation, null, 4));
+            return res.render("register", {
+                errors: resultValidation.mapped(),
+                oldData: req.body
+            })
+        }else {
+            
         let user = {
             email: form.email,
             passW: form.passW,
@@ -41,9 +35,13 @@ let users = {
                 return res.redirect("/profile/login");
             }).catch((err) => {
                 return console.log(err);
-            });
+    
+        });
+
+        }
     },
 };
+
 
 
 module.exports = users;

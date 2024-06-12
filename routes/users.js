@@ -4,7 +4,7 @@ let usersController = require("../controllers/usersController");
 const {body} = require("express-validator");
 const db = require("../database/models");
 
-const validaciones = [
+const validacionesRegister = [
   body("username")
     .notEmpty().withMessage("Debes completar este campo").bail()
     .isAlpha().withMessage("Tu usuario debe contener solo letras"),
@@ -26,10 +26,10 @@ const validaciones = [
 
 router.get('/', usersController.general);
 router.get('/edit', usersController.edit);
-router.get('/register', validaciones, usersController.register);
-router.post('/register', validaciones, usersController.register);
+router.get('/register', validacionesRegister, usersController.register);
+router.post('/register', validacionesRegister, usersController.register);
 router.get('/login', usersController.login);
-router.post('/login', validaciones, usersController.login);
+router.post('/login', usersController.login);
 
 
 module.exports = router;
