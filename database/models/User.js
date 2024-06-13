@@ -7,6 +7,9 @@ module.exports = function(sequelize, dataTypes){
             primaryKey: true,
             type: dataTypes.INTEGER
         },
+        username:{
+            type: dataTypes.STRING(25)
+        },
         email:{
             type: dataTypes.STRING(100)
         },
