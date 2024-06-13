@@ -8,9 +8,6 @@ module.exports = function(sequelize, dataTypes){
             type: dataTypes.INTEGER
         },
         email:{
-            type: dataTypes.STRING(25)
-        },
-        email:{
             type: dataTypes.STRING(100)
         },
         passW:{
