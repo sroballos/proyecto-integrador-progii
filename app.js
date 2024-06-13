@@ -7,7 +7,7 @@ var session = require("express-session");
 
 var indexRouter = require('./routes/index');
 let productsRouter = require("./routes/products")
-var usersRouter = require("./routes/users")
+let usersRouter = require("./routes/users.js")
 
 var app = express();
 

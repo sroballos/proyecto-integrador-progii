@@ -6,7 +6,7 @@ const User = require('../database/models/User.js');
 const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
 
-let users = {
+let usersController = {
     general: function(req,res){
         return res.render("profile", {"info": info})
     },
@@ -53,4 +53,4 @@ let users = {
 
 
 
-module.exports = users;
+module.exports = usersController;
