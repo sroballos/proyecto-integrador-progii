@@ -37,9 +37,19 @@ let product = {
         return res.render("search-results", {"info": info})
     },
     store: function(req,res){
-        db.Product.create(req.body)
-        return res.redirect("/profile")
+        db.Product.create({
+            title: req.body.title,
+            description: req.body.description,
+            image: req.body.image, 
+        })
+        .then(function(product) {
+            return res.redirect("/profile"); 
+        })
+        .catch(function(error) {
+            console.error("Error al agregar el producto:", error);
+            return res.status(500).send("Error al agregar el producto");
+        });
     }
-    }
+};
 
 module.exports = product;

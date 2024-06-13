@@ -11,18 +11,18 @@
 				<h2 class="products-title">Novedades</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<% for (let h = 0; h < info.length; h++){ %>
+			<% for (let h = 0; h < products.length; h++){ %>
 			<div class="col-12 col-sm-6 col-lg-3">
 				<section class="product-box">
-					<a href="/product/<%= info[h].id %>">
+					<a href="/product/<%= products[h].id %>">
 						<figure class="product-box_image">
-							<img src="/images/products/<%= info[h].image %>" alt="Abbey Road">
-							<% console.log(info) %>
+							<img src="/images/products/<%= products[h].image %>" alt="Abbey Road">
+							<% console.log(products) %>
 						</figure>
 						<article class="product-box_data">
-							<h2><%= info[h].title %></h2>
-							<p><%= info[h].artist %></p>
-							<p>ID:<%= info[h].id %></p>
+							<h2><%= products[h].title %></h2>
+							<p><%= products[h].artist %></p>
+							<p>ID:<%= products[h].id %></p>
 						</article>
 					</a>
 				</section>

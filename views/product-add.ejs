@@ -10,13 +10,13 @@
 			<div class="col-12">
 				<form action="/product/agregar_producto" method="POST" enctype="multipart/form-data">
 					<label for="imagen">Imagen:</label>
-					<input type="text" id="imagen" name="imagen" accept="image/*" required>
+					<input type="file" id="image" name="image" accept="image/*" required>
 					<br><br>
 					<label for="nombre">Nombre del producto:</label>
-					<input type="text" id="nombre" name="nombre" required>
+					<input type="text" id="title" name="title" required>
 					<br><br>
 					<label for="descripcion">Descripción:</label>
-					<textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+					<textarea id="description" name="description" rows="4" required></textarea>
 					<br><br>
 					<button type="submit">Agregar Producto</button>
 				</form>

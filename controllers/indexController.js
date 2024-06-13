@@ -1,19 +1,24 @@
 var express = require('express');
 var router = express.Router();
 let info = require("../db/info")
-let db = require("../database/models")
+const db = require("../database/models")
 
-let index = {
+let indexController = {
     index: function(req,res){
         db.Product.findAll({
-            order: [["id", "DESC"]],
+            include: [{ model: db.User, as: "user" }],
+            order: [["createdAt", "DESC"]],
         })
-        .then(function(data){
-           return res.render("index",{info:data})
+
+        .then(function(products){
+            res.render("index",{products})
         })
+
         .catch(function(error){
-        return console.log(error)})
+            console.error("Error con los productos:", error)
+            res.status(500).send("Error retrieving products");
+        });
     }
 };
 
-module.exports = index;
+module.exports = indexController;

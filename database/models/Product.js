@@ -43,6 +43,7 @@ module.exports = function(sequelize, dataTypes){
     }
 
     let Product = sequelize.define(alias, cols, config)
+    
     Product.associate = function(models){
         Product.hasMany(models.Comment, {
             as: "comments",
