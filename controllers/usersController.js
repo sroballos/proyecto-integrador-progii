@@ -27,13 +27,13 @@ let users = {
 
     store: function(req, res){
         let form = req.body;
-
+       
         let user = {
             email: form.email,
-            passW: form.passW,
-            dateBorn : form.dateBorn,
-            dni : form.dni,
-            profilePic : form.profilePic
+            passW: form.password,
+            dateBorn : form.fechaNacimiento,
+            dni : form.nroDocumento,
+            profilePic : form.fotoPerfil
         };
 
         db.User.create(user)
