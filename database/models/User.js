@@ -31,24 +31,29 @@ module.exports = function(sequelize, dataTypes){
         deletedAt:{
             type: dataTypes.DATE
         }
-    }
+    };
 
     let config = {
         tablename: "users",
         timestamps: true,
-        underscored: false
-    }
+        underscored: false,
+    };
 
     let User = sequelize.define(alias, cols, config)
+
     User.associate = function(models){
+
         User.hasMany(models.Comment,{
             as: "user",
             foreignKey: "id_user"
         }),
+
         User.hasMany(models.Product, {
             as: "products",
             foreignKey: "user_id"
         })
-        };
-    return User
-}
+        }
+
+    return User;
+    
+};
