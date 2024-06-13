@@ -24,12 +24,19 @@ const validacionesRegister = [
     .isLength({ min: 4 }).withMessage("Tu contraseña debe contener al menos 4 caracteres")
 ];
 
+const validacionesLogin = [
+  body("email")
+      .notEmpty().withMessage("Debes completar este campo").bail()
+      .isEmail().withMessage("Escribí un mail válido"),
+  body("passW")
+      .notEmpty().withMessage("Debes completar este campo")
+];
+
 router.get('/', usersController.general);
 router.get('/edit', usersController.edit);
 router.get('/register', usersController.register);
 router.post('/register', validacionesRegister, usersController.store);
 router.get('/login', usersController.login);
-router.post('/login', usersController.login);
 
 
 module.exports = router;
