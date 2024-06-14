@@ -5,50 +5,69 @@
     <div class="row">
         <div class="col-12">
             <h2>Registrarse</h2>
+
+			<% if (local.errors) {
+				errors.forEach(error => { %>
+				<p class="feedback is=danger"> <% = error.msg %></p>
+			<%  })
+			  } 
+			%>
+
 			<form action="/users/register" method="POST">
 				<div>
+
 					<label for="username">Nombre de usuario:</label>
-					<input type="text" id="username" name="username" required>
-					<% if (errors && errors.username) { %>
-						<p><%= errors.username.msg %></p>
-					<% } %>
+					<input type="text" name="username" 
+					id="username" value="<%= locals.old && old.
+					username ? old.username : ""%>">
+				
 				</div>
+
 				<div>
+
 					<label for="email">Email:</label>
-					<input type="email" id="email" name="email" required>
-					<% if (errors && errors.email) { %>
-						<p><%= errors.email.msg %></p>
-					<% } %>
+					<input type="email" name="email" 
+					id="email" value="<%= locals.old && old.
+					email ? old.email : ""%>" >
+
 				</div>
+				
 				<div>
+
 					<label for="passW">Contraseña:</label>
-					<input type="password" id="passW" name="passW" required>
-					<% if (errors && errors.passW) { %>
-						<p><%= errors.passW.msg %></p>
-					<% } %>
+					<input type="password" name="passW" id="passW">
+					
 				</div>
+
 				<div>
+
 					<label for="dateBorn">Fecha de nacimiento:</label>
-					<input type="date" id="dateBorn" name="dateBorn" required>
-					<% if (errors && errors.dateBorn) { %>
-						<p><%= errors.dateBorn.msg %></p>
-					<% } %>
+					<input type="date" name="dateBorn"
+					id="dateBorn" value="<%= locals.old && old.
+					dateBorn ? old.dateBorn : ""%>" >
+
 				</div>
+
 				<div>
+
 					<label for="dni">DNI:</label>
-					<input type="number" id="dni" name="dni" required>
-					<% if (errors && errors.dni) { %>
-						<p><%= errors.dni.msg %></p>
-					<% } %>
+					<input type="number" name="dni" 
+					id="dni" value="<%= locals.old && old.
+					dni ? old.dni : ""%>" >
+
 				</div>
+
 				<div>
+
 					<label for="profilePic">Foto de perfil (URL):</label>
-					<input type="text" id="profilePic" name="profilePic">
-					<% if (errors && errors.profilePic) { %>
-						<p><%= errors.profilePic.msg %></p>
-					<% } %>
+					<input type="text" name="profilePic"
+					id="profilePic" value="<%= locals.old && old.
+					profilePic ? old.profilePic : ""%>" >
+
 				</div>
+				
 				<button type="submit">Registrarse</button>
+
 			</form>
         </div>
     </div>
