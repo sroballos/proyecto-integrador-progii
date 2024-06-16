@@ -34,7 +34,7 @@ let usersController = {
 
             db.User.create(user)
                 .then(function (user){
-                    return res.redirect("/users/login");
+                    return res.redirect("/profile/login");
                 })
                 .catch(function(err){
                     console.log("Error al guardar el usuario", err);

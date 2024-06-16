@@ -78,6 +78,5 @@ router.get('/login', controller.login);
 
 router.post('/register', validacionesRegister, controller.registerStore);
 
-router.get("/profile", controller.general)
 
 module.exports = router;

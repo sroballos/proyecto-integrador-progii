@@ -6,14 +6,12 @@
         <div class="col-12">
             <h2>Registrarse</h2>
 
-			<% if (local.errors) {
-				errors.forEach(error => { %>
-				<p class="feedback is=danger"> <% = error.msg %></p>
-			<%  })
-			  } 
-			%>
+			<% if (locals.errors) {
+				for(let i = 0; i <= locals.errors.length; i++){ %>
+				<p class="feedback is=danger"> <%= locals.errors[i].msg %></p>
+			<%  } } %>
 
-			<form action="/users/register" method="POST">
+			<form action="/profile/register" method="POST">
 				<div>
 
 					<label for="username">Nombre de usuario:</label>
