@@ -10,6 +10,21 @@ let usersController = {
         return res.render("profile", { "info": req.session.user }); 
     },
 
+    generalOther: function(req, res) {
+        db.User.findByPk(req.params.id,{
+            include: [{association:"products"}]
+        })
+        .then(function(data){
+            if (data){
+            return res.render("profile-other", {info:data})} else{
+            return res.render("profile-other", {info:-1})
+            }
+        })
+        .catch(function(error){
+            return console.log(error)
+        }) 
+    },
+
     register: function(req,res){
         let errors = validationResult(req);
         if (errors.isEmpty()){
