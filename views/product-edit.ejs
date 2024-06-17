@@ -8,15 +8,18 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<div class="col-12">
-				<form action="FIJARSE EN ESTO" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="id" name="name" value="<%= info.id %>" required>
+				<% if (locals.errors){ for(let i = 0; i < locals.errors.length; i++){ %>
+					<p class="feedback is=danger"> <%= locals.errors[i].msg %></p>
+				<%  } } %>
+				<form action="/product/edit" method="POST">
+                    <input type="hidden" id="id" name="id" value="<%= info.id %>" required>
 					<label for="nombre">Nombre del álbum:</label>
 					<input type="text" id="title" name="title" value="<%= info.title %>" required>
 					<br><br>
-                    <label for="artista">Artista:</label>
+                    <label for="artist">Artista:</label>
 					<input type="text" id="artist" name="artist" value="<%= info.artist %>" required>
 					<br><br>
-                    <label for="releasedate">Fecha de publicación:</label>
+                    <label for="release_date">Fecha de publicación:</label>
 					<input type="date" id="release_date" name="release_date" value="<%= info.release_date %>" required>
 					<br><br>
                     <label for="imagen">Imagen:</label>

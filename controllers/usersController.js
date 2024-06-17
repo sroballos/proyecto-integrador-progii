@@ -12,7 +12,8 @@ let usersController = {
 
     generalOther: function(req, res) {
         db.User.findByPk(req.params.id,{
-            include: [{association:"products"}]
+            include: [{association:"products"}],
+            order: [["createdAt", "ASC"]]
         })
         .then(function(data){
             if (data){

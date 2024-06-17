@@ -7,7 +7,7 @@ let indexController = {
     index: function(req,res){
         db.Product.findAll({
             include: [{ model: db.User, as: "user" }],
-            order: [["createdAt", "DESC"]],
+            order: [["createdAt", "DESC"]]
         })
 
         .then(function(products){
