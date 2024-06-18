@@ -69,29 +69,41 @@ let usersController = {
      },
        
     login: function(req,res){
-        return res.render("login")
+        if (req.session.user != undefined) {
+            return res.redirect("/");
+        } else {
+            return res.render("login")
+        }
     },
 
-    loginProcess: function (req ,res) {
-        db.User.findOne({
-            where : {email : req.body.email}
-        })
-        .then(function(user) {
-            if (user && bcrypt.compareSync(req.body.passW, user.passW)) {
-                req.session.user = user;
-                return res.redirect("/");
-            } else {
-                return res.render("login", {
-                    errors: { email: { msg: "Credenciales inválidas" } }
-                });
-            }
-        })
-        .catch(function (err) {
-            console.log("Error al logearse.", err)
-            return res.status(500).send("Error al logearse");
-        });
-
+    loginProcess: function (req, res) {
+        let informacion = req.body;
+        let filtro = {
+            where: { email: informacion.email }
+        };
+    
+        db.User.findOne(filtro)
+            .then(function(user) {
+                if (!user) {
+                    return res.send("No existe un usuario con este email " + informacion.email);
+                }
+    
+                let passwordMatches = bcrypt.compareSync(informacion.passW, user.passW);
+                
+                if (passwordMatches) {
+                    req.session.user = user;
+                    return res.redirect("/"); // Redirigir a la página principal después de iniciar sesión
+                } else {
+                    return res.send("La contraseña es incorrecta, vuelva a ingresarla");
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+                return res.status(500).send("Error al intentar iniciar sesión");
+            });
     },
+    
+    
         
     edit: function(req,res){
         return res.render("profile-edit");

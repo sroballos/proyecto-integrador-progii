@@ -69,13 +69,18 @@ const validacionesLogin = [
 
 
   router.get('/register', controller.register);
+  router.post('/register', validacionesRegister, controller.registerStore);
+
+
   router.get('/login', controller.login);
+  router.post('/login', validacionesLogin, controller.loginProcess);
+
+
   router.get('/edit', controller.edit);
   router.get('/:id?', controller.generalOther);
   router.get('/', controller.general);
   
-  router.post('/register', validacionesRegister, controller.registerStore);
-  router.post('/login', validacionesLogin, controller.loginProcess);
+
 
 
 
