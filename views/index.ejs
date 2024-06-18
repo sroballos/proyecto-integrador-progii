@@ -1,4 +1,9 @@
-<%- include("partials/headerNormal.ejs") %>
+<% if (locals.username != undefined) { %>
+	<%- include("partials/headerLogueado.ejs") %>
+  <% } else { %>
+	<%- include("partials/headerNormal.ejs") %>
+  <% } %>
+
 	
 	<!-- Banner -->
 	<img src="/images/bannerVinilos.png" alt="Banner de ofertas">

@@ -30,12 +30,7 @@ let usersController = {
     },
 
     register: function(req,res){
-        let errors = validationResult(req);
-        if (errors.isEmpty()){
             return res.render("register");
-        } else {
-            res.render("register", { errors: errors.mapped(), old: req.body });
-        }
     },
 
     registerStore: function(req, res) {
@@ -92,6 +87,10 @@ let usersController = {
                 
                 if (passwordMatches) {
                     req.session.user = user;
+
+                    if(informacion.remember !== undefined){
+                        res.cookie("idUsuario",user.id,{ maxAge: 1000 * 60 * 15})
+                    }
                     return res.redirect("/"); // Redirigir a la página principal después de iniciar sesión
                 } else {
                     return res.send("La contraseña es incorrecta, vuelva a ingresarla");
@@ -107,7 +106,18 @@ let usersController = {
         
     edit: function(req,res){
         return res.render("profile-edit");
-    }
+    },
+
+    logout: function(req, res) {
+        req.session.destroy(function(err) {
+            if (err) {
+                console.log(err);
+                return res.status(500).send("Error al cerrar sesión.");
+            }
+            res.clearCookie('session_id');
+            res.redirect('/');
+        });
+    },
 
 };
 

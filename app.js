@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
+  name: "session_id",
   secret: 'your_secret_key',
   resave: false,
   saveUninitialized: true,
@@ -42,6 +43,18 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  app.use(function(req, res, next){
+    if (req.session && req.session.user) {
+      res.locals.usuarioLogueado = {
+        id: req.session.user.id,
+        username: req.session.user.username,
+        email: req.session.user.email
+      };
+    } else {
+      res.locals.usuarioLogueado = null;
+    }
+    return next();
+  });
   // render the error page
   res.status(err.status || 500);
   res.render('error');
