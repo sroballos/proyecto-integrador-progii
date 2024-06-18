@@ -78,8 +78,7 @@ const validacionesLogin = [
   router.post('/logout', controller.logout);
 
   router.get('/edit', controller.edit);
-  router.get('/:id?', controller.generalOther);
-  router.get('/', controller.general);
+  router.get('/:id?', controller.general);
   
 
 
