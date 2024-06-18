@@ -1,75 +1,76 @@
-<!DOCTYPE html>
+<!D<!DOCTYPE html>
 <html lang="es">
-<!-- Include Head -->
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link width="" rel="shortcut icon" href="/images/LogoVibra.png" />
-	
-	<title> Vibra Music Shop</title>
-			<!-- Font Awesome Stylesheet -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-	<!-- Bootstrap Grid Stylesheet -->
-	<link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
-	<!-- Own Stylesheet -->
-	<link rel="stylesheet" href="/stylesheets/app.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link width="" rel="shortcut icon" href="/images/LogoVibra.png" />
+    
+    <title> Vibra Music Shop</title>
+    <!-- Font Awesome Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <!-- Bootstrap Grid Stylesheet -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
+    <!-- Own Stylesheet -->
+    <link rel="stylesheet" href="/stylesheets/app.css">
 </head>
 <body>
-	<!-- Header -->
-	<header class="main-header">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="logoVibra">
-					<a href="/" class="main-header_home-link">
-						<img src="/images/LogoVibra.png">
-					</a>
-				</div>
-	
-				<div class="col-7 col-md-6">
-					<form action="/product/searchresult" method="GET" class="search-form">
-						<input type="text" name="search" placeholder="Buscar productos, marcas y más" class="search-form_input">
-						<button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
-					</form>
-				</div>
-	
-				<div class="col-12 col-md-4">
-					<a class="main-header_credit-link">
-						<i class="fa-solid fa-comment"></i>
-						Todas las opiniones en un solo lugar.
-					</a>
-				</div>
-			</div>
-	
-			<button class="btn-toggle-navbar">
-				<i class="fas fa-bars"></i>
-			</button>
-	
-			<nav class="main-navbar">
-				<ul class="left-navbar">
-					<li><a href="/">Todos los productos</a></li>
-					<li><a href="/product/add">Cargar productos</a></li>
-				</ul>
-	
-				<ul class="right-navbar">
-					<li><a href="/profile/register"> NOMBRE DEL USUARIO (REEMPLAZAR POR EL NOMBRE DEL USUARIO EN LA SESSION) <i class="fas fa-user"></i>
-						</a>
-					</li>
-					<li>
-						<form action="/" method="GET">
-							<button class="logout" type="submit">
-								Cerrar sesión <i class="fas fa-sign-in-alt"></i>
-							</button>
-						</form>
-					</li>
-					<!-- Solo deslogueado <li>
-						<a href="register.html">Creá tu cuenta <i class="far fa-address-card"></i>
-						</a>
-					</li>
-					<li>
-						<a href="login.html">Ingresá <i class="fas fa-sign-in-alt"></i></a>
-					</li> -->
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<!-- /Header -->
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="logoVibra">
+                    <a href="/" class="main-header_home-link">
+                        <img src="/images/LogoVibra.png">
+                    </a>
+                </div>
+
+                <div class="col-7 col-md-6">
+                    <form action="/product/searchresult" method="GET" class="search-form">
+                        <input type="text" name="search" placeholder="Buscar productos, marcas y más" class="search-form_input">
+                        <button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <a class="main-header_credit-link">
+                        <i class="fa-solid fa-comment"></i>
+                        Todas las opiniones en un solo lugar.
+                    </a>
+                </div>
+            </div>
+
+            <button class="btn-toggle-navbar">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="main-navbar">
+                <ul class="left-navbar">
+                    <li><a href="/">Todos los productos</a></li>
+                    <li><a href="/product/add">Cargar productos</a></li>
+                </ul>
+
+                <ul class="right-navbar">
+                    <% if (info && info.username) { %>
+                        <li><a href="/profile/<%= info.username %>">
+                            <%= info.username %> <i class="fas fa-user"></i>
+                        </a></li>
+                        <li>
+                            <form action="/logout" method="POST">
+                                <button class="logout" type="submit">
+                                    Cerrar sesión <i class="fas fa-sign-in-alt"></i>
+                                </button>
+                            </form>
+                        </li>
+                    <% } else { %>
+                        <li>
+                            <a href="/register">Creá tu cuenta <i class="far fa-address-card"></i></a>
+                        </li>
+                        <li>
+                            <a href="/login">Ingresá <i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                    <% } %>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- /Header -->

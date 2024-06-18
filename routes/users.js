@@ -42,10 +42,10 @@ const validacionesLogin = [
             where: {email: req.body.email}
            })
             .then(function(user){
-                if(user){
+                if(!user){
                  throw new Error("No existe un usuario con este mail")
                  }
-            })
+            });
 
         }),
 
@@ -68,17 +68,14 @@ const validacionesLogin = [
   ];
 
 
-router.get('/', controller.general);
-
-router.get('/edit', controller.edit);
-
-router.get('/register', controller.register);
-
-router.get('/login', controller.login);
-
-router.get('/:id?', controller.generalOther);
-
-router.post('/register', validacionesRegister, controller.registerStore);
+  router.get('/register', controller.register);
+  router.get('/login', controller.login);
+  router.get('/edit', controller.edit);
+  router.get('/:id?', controller.generalOther);
+  router.get('/', controller.general);
+  
+  router.post('/register', validacionesRegister, controller.registerStore);
+  router.post('/login', validacionesLogin, controller.loginProcess);
 
 
 

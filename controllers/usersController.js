@@ -7,9 +7,12 @@ const bcrypt = require('bcryptjs');
 
 let usersController = {
     general: function(req, res) {
+        if (!req.session.user) {
+            return res.redirect("/login");
+        }
         return res.render("profile", { "info": req.session.user }); 
     },
-
+    
     generalOther: function(req, res) {
         db.User.findByPk(req.params.id,{
             include: [{association:"products"}],

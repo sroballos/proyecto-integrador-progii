@@ -1,32 +1,38 @@
 <%- include("partials/headerLogueado.ejs") %>
 
-	<!-- Datos del usuario -->
-	<section class="info-usuario container products-wrapper">
-		<div class="row">
-			<div class="img-container offset-3 col-2">
-				<img src="<% info.profilePic %>" alt="profilePic" class="profilePic">
-			</div>
-			<div class="data-container col-6">
-				<div class="d-flex align-items-center ">
-					<h1 class="main-title"><%= info.nombre %> 
-						<a href="/profile/edit">
-							<i class="fas fa-cog"></i>
-						</a>
-					</h1>
-					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
-				</div>
-				<div>
-					<ul class="">
-						<li><%= info.email %></li>
-						<li>8 productos</li>
-						<li>200 seguidores</li>
-						<li>300 comentarios</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- /Datos del usuario -->
+<!-- Datos del usuario -->
+<section class="info-usuario container products-wrapper">
+    <% if (info) { %>
+        <div class="row">
+            <div class="img-container offset-3 col-2">
+                <% if (info.profilePic) { %>
+                    <img src="/images/users/<%= info.profilePic %>" alt="profilePic" class="profilePic">
+                <% } else { %>
+                    <img src="/images/default-profile.png" alt="default profilePic" class="profilePic"> <!-- Imagen por defecto -->
+                <% } %>
+            </div>
+            <div class="data-container col-6">
+                <div class="d-flex align-items-center">
+                    <h1>Bienvenido, <%= info.username %>!</h1>
+                </div>
+                <div class="user-data">
+                    <p>Email: <%= info.email %></p>
+                    <p>Fecha de nacimiento: <%= info.dateBorn %></p>
+                    <p>DNI: <%= info.dni %></p>
+                </div>
+                <div class="edit-profile">
+                    <a href="/profile/edit" class="btn btn-primary">Editar Perfil</a>
+                </div>
+            </div>
+        </div>
+    <% } else { %>
+        <h1>No se ha encontrado la información del usuario.</h1>
+    <% } %>
+</section>
+
+<%- include("partials/footer.ejs") %>
+<!-- /Datos del usuario -->
+
 
 	<!-- Mis productos -->
 	<div class="container products-wrapper">
