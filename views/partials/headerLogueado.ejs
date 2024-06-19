@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-7 col-md-6">
-                    <form action="/product/searchresult" method="GET" class="search-form">
+                    <form action="/product/search" method="GET" class="search-form">
                         <input type="text" name="search" placeholder="Buscar productos, marcas y más" class="search-form_input">
                         <button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
                     </form>
@@ -55,7 +55,7 @@
                             <%= info.username %> <i class="fas fa-user"></i>
                         </a></li>
                         <li>
-                            <form action="/logout" method="POST">
+                            <form action="/profile/logout" method="POST">
                                 <button class="logout" type="submit">
                                     Cerrar sesión <i class="fas fa-sign-in-alt"></i>
                                 </button>
@@ -66,7 +66,7 @@
                             <a href="/profile/register">Creá tu cuenta <i class="far fa-address-card"></i></a>
                         </li>
                         <li>
-                            <a href="/profile//login">Ingresá <i class="fas fa-sign-in-alt"></i></a>
+                            <a href="/profile/login">Ingresá <i class="fas fa-sign-in-alt"></i></a>
                         </li>
                     <% } %>
                 </ul>

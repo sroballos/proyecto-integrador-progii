@@ -7,41 +7,30 @@ const bcrypt = require('bcryptjs');
 
 let usersController = {
     general: function(req, res) {
-        if(req.params.id){
+        if (!req.session.user) {
+            return res.redirect("/login");
+        }
+        return res.render("profile", { "info": req.session.user }); 
+    },
+    
+    generalOther: function(req, res) {
         db.User.findByPk(req.params.id,{
             include: [{association:"products"}],
             order: [["createdAt", "ASC"]]
         })
-        .then(function(data){
-            if (data){
-            return res.render("profile-other", {info:data})} else{
-            return res.render("profile-other", {info:-1})
+        .then(function(data) {
+            if (data) {
+                if (!data.products) {
+                    data.products = [];
+                };
+                return res.render("profile-other", {info: data});
+            } else {
+                return res.render("profile-other", {info: -1});
             }
         })
         .catch(function(error){
             return console.log(error)
         }) 
-        } else{
-            if(req.cookies.idUsuario){
-                db.User.findByPk(req.cookies.idUsuario,{
-                    include: [{association:"products"}],
-                    order: [["createdAt", "ASC"]]
-                })
-                .then(function(data){
-                    if (data){
-                    return res.render("profile-other", {info:data})} else{
-                    return res.render("profile-other", {info:-1})
-                    }
-                })
-                .catch(function(error){
-                    return console.log(error)
-                })
-            }
-            else{
-                res.redirect("/")
-            }
-        }
-
     },
 
     register: function(req,res){

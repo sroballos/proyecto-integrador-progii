@@ -1,5 +1,7 @@
-<% if (locals.username != undefined) { %>
+  <% console.log('Usuario Logueado en la Vista:', locals.usuarioLogueado); %> <!-- Log para verificar en la vista --> 
+  <% if (locals.usuarioLogueado != undefined) { %>
 	<%- include("partials/headerLogueado.ejs") %>
+	<p>Bienvenido, <%= locals.usuarioLogueado %>!</p>
   <% } else { %>
 	<%- include("partials/headerNormal.ejs"); %>
   <% } %>

@@ -21,10 +21,14 @@
 				</div>
 				<div>
 					<ul class="">
-						<li><strong><%= info.username %></strong></li>
-						<li><%= info.products.length %> productos</li>
-						<li>0 seguidores</li>
-						<li>y comentarios</li>
+						<% if (info !== -1 && info.products) { %>	
+							<li><strong><%= info.username %></strong></li>
+							<li><%= info.products.length %> productos</li>
+							<li>0 seguidores</li>
+							<li>y comentarios</li>
+						<% } else { %>
+							<li>Información del usuario no disponible</li>
+						<% } %>
 					</ul>
 				</div>
 			</div>

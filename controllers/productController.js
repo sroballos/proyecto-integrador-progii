@@ -33,8 +33,30 @@ let product = {
             return console.log(error)
         })
     },
-    searchresults: function(req,res){
-        return res.render("search-results", {"info": info})
+    search: function(req, res) {
+        let searchTerm = req.query.q;
+
+        db.Product.findAll({
+            where: {
+                [db.Sequelize.Op.or]: [
+                    { name: { [db.Sequelize.Op.like]: `%${searchTerm}%` } },
+                    { description: { [db.Sequelize.Op.like]: `%${searchTerm}%` } }
+                ]
+            },
+            include: [{ association: 'user' }],
+            order: [["createdAt", "DESC"]]
+        })
+        .then(function(products) {
+            if (products.length > 0) {
+                res.render("search-results", { products: products, searchTerm: searchTerm });
+            } else {
+                res.render("search-results", { products: [], searchTerm: searchTerm });
+            }
+        })
+        .catch(function(error) {
+            console.log(error);
+            res.status(500).send("Error al realizar la búsqueda");
+        });
     },
     store: function(req,res){
         db.Product.create({
