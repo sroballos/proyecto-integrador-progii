@@ -50,9 +50,9 @@
                 </ul>
 
                 <ul class="right-navbar">
-                    <% if (info && info.username) { %>
-                        <li><a href="/profile/<%= info.username %>">
-                            <%= info.username %> <i class="fas fa-user"></i>
+                    <% if (usuarioLogueado && usuarioLogueado.username) { %>
+                        <li><a href="/profile/<%= usuarioLogueado.username %>">
+                            <%= usuarioLogueado.username %> <i class="fas fa-user"></i>
                         </a></li>
                         <li>
                             <form action="/profile/logout" method="POST">
@@ -62,15 +62,17 @@
                             </form>
                         </li>
                     <% } else { %>
-                        <li>
-                            <a href="/profile/register">Creá tu cuenta <i class="far fa-address-card"></i></a>
-                        </li>
-                        <li>
-                            <a href="/profile/login">Ingresá <i class="fas fa-sign-in-alt"></i></a>
-                        </li>
+                            <li>
+                                <a href="/profile/register">Creá tu cuenta <i class="far fa-address-card"></i></a>
+                            </li>
+                            <li>
+                                <a href="/profile/login">Ingresá <i class="fas fa-sign-in-alt"></i></a>
+                            </li>
                     <% } %>
                 </ul>
             </nav>
         </div>
     </header>
     <!-- /Header -->
+</body>
+</html>

@@ -90,7 +90,11 @@ let usersController = {
                 let passwordMatches = bcrypt.compareSync(informacion.passW, user.passW);
                 
                 if (passwordMatches) {
-                    req.session.user = user;
+                    req.session.user = {
+                        id: user.id,
+                        username: user.username,
+                        email: user.email
+                    };
 
                     if(informacion.remember !== undefined){
                         res.cookie("idUsuario",user.id,{ maxAge: 1000 * 60 * 15})

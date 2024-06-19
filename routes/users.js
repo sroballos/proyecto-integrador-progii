@@ -80,7 +80,7 @@ const validacionesLogin = [
   router.get('/edit', controller.edit);
   router.get('/:id?', controller.general);
   
-
+  
 
 
 

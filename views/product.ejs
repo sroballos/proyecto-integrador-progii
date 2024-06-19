@@ -1,4 +1,8 @@
-<%- include("partials/headerNormal.ejs") %>
+<% if (usuarioLogueado) { %>
+	<%- include("partials/headerLogueado.ejs") %>
+<% } else { %>
+	<%- include("partials/headerNormal.ejs") %>
+<% } %>
 
 	<!-- product detail -->
 	<div class="container products-wrapper">

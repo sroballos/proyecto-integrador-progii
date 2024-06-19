@@ -28,6 +28,19 @@ app.use(session({
   cookie: { secure: false }
 }));
 
+app.use(function(req, res, next) {
+  if (req.session && req.session.user) {
+      res.locals.usuarioLogueado = {
+          id: req.session.user.id,
+          username: req.session.user.username,
+          email: req.session.user.email
+      };
+  } else {
+      res.locals.usuarioLogueado = null;
+  }
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/product', productsRouter);
 app.use('/profile', usersRouter);
@@ -43,21 +56,12 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  app.use(function(req, res, next){
-    if (req.session && req.session.user) {
-      res.locals.usuarioLogueado = {
-        id: req.session.user.id,
-        username: req.session.user.username,
-        email: req.session.user.email
-      };
-    } else {
-      res.locals.usuarioLogueado = null;
-    }
-    return next();
-  });
+
   // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
