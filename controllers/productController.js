@@ -3,6 +3,7 @@ var router = express.Router();
 let db = require("../database/models")
 let info = require("../db/info")
 const { validationResult } = require("express-validator");
+const {Op} = require("sequelize");
 
 let product = {
     general: function(req,res){
@@ -34,30 +35,30 @@ let product = {
         })
     },
     search: function(req, res) {
-        let searchTerm = req.query.q;
+        let searchTerm = req.query.search || '';
+
+        console.log("Search Term:", searchTerm);
 
         db.Product.findAll({
             where: {
-                [db.Sequelize.Op.or]: [
-                    { name: { [db.Sequelize.Op.like]: `%${searchTerm}%` } },
-                    { description: { [db.Sequelize.Op.like]: `%${searchTerm}%` } }
+                [Op.or]: [
+                    { title: { [Op.like]: `%${searchTerm}%` } },
+                    { description: { [Op.like]: `%${searchTerm}%` } }
                 ]
             },
             include: [{ association: 'user' }],
             order: [["createdAt", "DESC"]]
         })
         .then(function(products) {
-            if (products.length > 0) {
-                res.render("search-results", { products: products, searchTerm: searchTerm });
-            } else {
-                res.render("search-results", { products: [], searchTerm: searchTerm });
-            }
+            console.log("Products found:", products);
+            res.render("product-search", { products, searchTerm });
         })
         .catch(function(error) {
-            console.log(error);
+            console.log("Error:", error);
             res.status(500).send("Error al realizar la búsqueda");
         });
     },
+
     store: function(req,res){
         db.Product.create({
             title: req.body.title,

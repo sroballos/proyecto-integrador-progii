@@ -1,0 +1,72 @@
+<%- include("partials/headerLogueado.ejs") %>
+
+<h1>Resultados de búsqueda para "<%= searchTerm %>"</h1>
+
+<% if (products.length > 0) { %>
+    <div class="product-search-results">
+        <% products.forEach(function(product) { %>
+            <div class="product-item">
+                <img src="<%= product.image %>" alt="<%= product.title %>" class="product-image">
+                <div class="product-details">
+                    <a href="/product/<%= product.id %>" class="product-title"><%= product.title %></a>
+                    <p class="product-description"><%= product.description %></p>
+                    <% if (product.user) { %>
+                        <p class="product-user">Publicado por: <a href="/profile/<%= product.user.id %>"><%= product.user.username %></a></p>
+                    <% } else { %>
+                        <p class="product-user">Publicado por: Usuario desconocido</p>
+                    <% } %>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+<% } else { %>
+    <h2>No hay resultados para su criterio de búsqueda</h2>
+<% } %>
+
+<!-- footer -->
+<%- include("partials/footer.ejs") %>
+<!-- /footer -->
+<style>
+    .product-search-results {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .product-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #ddd;
+        padding: 10px;
+        width: 200px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .product-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    .product-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+        text-decoration: none;
+    }
+    .product-title:hover {
+        text-decoration: underline;
+    }
+    .product-description {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #555;
+    }
+    .product-user {
+        font-size: 12px;
+        color: #777;
+    }
+</style>
+</body>
+</html>
