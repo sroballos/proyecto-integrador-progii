@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="/stylesheets/app.css">
 </head>
 <body>
-    <!-- Header -->
-    <% console.log('Usuario Logueado en la Vista:', usuarioLogueado); %> <!-- Log para verificar en la vista --> 
+    <!-- Header --> 
     <% if (usuarioLogueado) { %>
         <%- include("partials/headerLogueado.ejs") %>
         <p>Bienvenido, <%= usuarioLogueado.username %>!</p>
@@ -41,7 +40,6 @@
                     <a href="/product/<%= products[h].id %>">
                         <figure class="product-box_image">
                             <img src="/images/products/<%= products[h].image %>" alt="Abbey Road">
-                            <% console.log(products) %>
                         </figure>
                         <article class="product-box_data">
                             <h2><%= products[h].title %></h2>

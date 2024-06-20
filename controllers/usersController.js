@@ -93,7 +93,10 @@ let usersController = {
                     req.session.user = {
                         id: user.id,
                         username: user.username,
-                        email: user.email
+                        email: user.email,
+                        dateBorn: user.dateBorn,
+                        dni: user.dni,
+                        profilePic: user.profilePic
                     };
 
                     if(informacion.remember !== undefined){
@@ -113,7 +116,48 @@ let usersController = {
     
         
     edit: function(req,res){
-        return res.render("profile-edit");
+        return res.render("profile-edit", {info: req.session.user});
+    },
+
+    storeEdit: function(req,res){
+        let informacion = req.body;
+        let errors = validationResult(req);
+        
+        if (errors.isEmpty()) {
+            let user = {
+                username: req.body.username,
+                email: req.body.email,
+                passW: bcrypt.hashSync(req.body.password, 10),
+                dateBorn: req.body.fechaNacimiento,
+                dni: req.body.nroDocumento,
+                profilePic: req.body.profilePic
+            };
+
+            let idUsuario = req.session.user.id
+            db.User.update(user, {where: {id: idUsuario}})
+                .then(function (user){
+                    req.session.user = {
+                        id: idUsuario,
+                        username: req.body.username,
+                        email: req.body.email,
+                        passW: bcrypt.hashSync(req.body.password, 10),
+                        dateBorn: req.body.fechaNacimiento,
+                        dni: req.body.nroDocumento,
+                        profilePic: req.body.profilePic
+                    };
+
+                    return res.redirect("/profile");
+                })
+                .catch(function(err){
+                    console.log("Error al guardar el usuario", err);
+                    return res.status(500).send("Error al guardar el usuario");
+                });
+
+        } else {
+            
+            // hacer que aparescan los errores si ingresa mal los datos
+        }
+
     },
 
     logout: function(req, res) {
