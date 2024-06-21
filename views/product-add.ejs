@@ -1,33 +1,44 @@
 <%- include("partials/headerLogueado.ejs") %>
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Agregar productos</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-			<div class="col-12">
-				<form action="/product/agregar_producto" method="POST" enctype="multipart/form-data">
-					<label for="imagen">Imagen:</label>
-					<input type="file" id="image" name="image" accept="image/*" required>
-					<br><br>
-					<label for="nombre">Nombre del producto:</label>
-					<input type="text" id="title" name="title" required>
-					<br><br>
-					<label for="descripcion">Descripción:</label>
-					<textarea id="description" name="description" rows="4" required></textarea>
-					<br><br>
-					<button type="submit">Agregar Producto</button>
-				</form>
-			</div>
-		</div>
-	</div>
+<div class="container products-wrapper">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="products-title">Agregar productos</h2>
+        </div>
+        <div class="col-12">
+            <form action="/product/store" method="POST" enctype="multipart/form-data">
 
+				<div class="form-group">
+                    <label for="image">Imagen:</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
 
-<!-- footer -->
+				<div class="form-group">
+                    <label for="title">Nombre del producto:</label>
+                    <input type="text" id="title" name="title" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="artist">Artista:</label>
+                    <input type="text" id="artist" name="artist" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="release_date">Fecha de lanzamiento:</label>
+                    <input type="date" id="release_date" name="release_date" class="form-control" required>
+                </div>
+
+				<div class="form-group">
+                    <label for="description">Descripción:</label>
+                    <textarea id="description" name="description" rows="4" class="form-control" required></textarea>
+                </div>
+
+				<button type="submit" class="btn btn-primary">Agregar Producto</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <%- include("partials/footer.ejs") %>
-<!-- /footer -->
 </body>
-
 </html>

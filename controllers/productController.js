@@ -59,20 +59,36 @@ let product = {
         });
     },
 
-    store: function(req,res){
-        db.Product.create({
-            title: req.body.title,
-            description: req.body.description,
-            image: req.body.image, 
-        })
-        .then(function(product) {
-             
-        })
-        .catch(function(error) {
-            console.error("Error al agregar el producto:", error);
-            return res.status(500).send("Error al agregar el producto");
-        });
-    },
+    store: function(req, res) {
+        let errors = validationResult(req);
+    
+        if (errors.isEmpty()) {
+            let product = {
+                title: req.body.title,
+                artist: req.body.artist,
+                release_date: req.body.release_date,
+                image: req.body.image,
+                description: req.body.description,
+                createdAt: new Date().toLocaleString(),
+                user_id: req.session.user.id
+        };
+    
+        db.Product.create(product)
+            .then(function(newProduct) {
+                console.log("Producto agregado:", newProduct);
+                return res.redirect("/profile/miPerfil"); 
+            })
+            .catch(function(error) {
+                console.error("Error al agregar el producto:", error);
+                return res.status(500).send("Error al agregar el producto");
+            });
+        } else {
+            res.render("product-add", {
+                    errors: errors.mapped(),
+                    old: req.body
+                });
+        }           
+     },
 
     addComment: function(req,res) {
 

@@ -46,12 +46,12 @@
             <nav class="main-navbar">
                 <ul class="left-navbar">
                     <li><a href="/">Todos los productos</a></li>
-                    <li><a href="/product/add">Cargar productos</a></li>
+                    <li><a href="/product/add">Agregar Productos</a></li>
                 </ul>
 
                 <ul class="right-navbar">
                     <% if (usuarioLogueado && usuarioLogueado.username) { %>
-                        <li><a href="/profile/miPerfil">
+                        <li><a href="/profile/edit">
                             <%= usuarioLogueado.username %> <i class="fas fa-user"></i>
                         </a></li>
                         <li>
