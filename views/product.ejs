@@ -41,11 +41,18 @@
 						</article>
 						<% } %>
 					</section>
-					<form class="form" action="/" method="GET">
+
+					<% if (usuarioLogueado !== null) { %>
+					<form class="form" action="/product/addComment" method="POST">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
 					<hr>
+						<% } else { %>
+							<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+							<button style="background-color: gray;" type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>	
+						<% } %>
+
 				</div>
 			<%} else{ %>
 				<h2 style="margin-left: 40px;"> Su álbum no pudo ser encontrado. Por favor, intente con otro álbum o <a href="/">vuelva al home</a></h2>

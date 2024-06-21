@@ -66,13 +66,22 @@ let product = {
             image: req.body.image, 
         })
         .then(function(product) {
-            return res.redirect("/profile"); 
+             
         })
         .catch(function(error) {
             console.error("Error al agregar el producto:", error);
             return res.status(500).send("Error al agregar el producto");
         });
     },
+
+    addComment: function(req,res) {
+
+        console.log("lleguee")
+        return res.render("profile");
+
+
+    },
+
     editProduct: function(req,res){
         let errors = validationResult(req);
         if (errors.isEmpty()) {
