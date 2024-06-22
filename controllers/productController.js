@@ -89,7 +89,7 @@ let product = {
     
             db.Product.create(product)
                 .then(function(newProduct) {
-                    return res.redirect('/profile/miPerfil');
+                    return res.redirect('/profile/');
                 })
                 .catch(error => {
                     console.log(error);
@@ -113,7 +113,7 @@ let product = {
     addComment: function(req,res) {
 
         console.log("lleguee")
-        return res.render("profile");
+        return res.render("/profile");
 
 
     },
@@ -140,7 +140,6 @@ let product = {
                 });
 
         } else {
-            return res.send(errors.mapped())
             res.render("product-edit", {
                     errors: errors.mapped(),
                     old: req.body

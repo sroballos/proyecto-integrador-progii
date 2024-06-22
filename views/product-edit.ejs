@@ -12,21 +12,27 @@
 					<p class="feedback is=danger"> <%= locals.errors[i].msg %></p>
 				<%  } } %>
 				<form action="/product/edit" method="POST">
-                    <input type="hidden" id="id" name="id" value="<%= info.id %>" required>
+                    <input type="hidden" id="id" name="id" value="<%= locals.old && old.
+					id ? old.id : info.id %>" required>
 					<label for="nombre">Nombre del álbum:</label>
-					<input type="text" id="title" name="title" value="<%= info.title %>" required>
+					<input type="text" id="title" name="title" value="<%= locals.old && old.
+					title ? old.title : info.title %>" required>
 					<br><br>
                     <label for="artist">Artista:</label>
-					<input type="text" id="artist" name="artist" value="<%= info.artist %>" required>
+					<input type="text" id="artist" name="artist" value="<%= locals.old && old.
+					artist ? old.artist : info.artist %>" required>
 					<br><br>
                     <label for="release_date">Fecha de publicación:</label>
-					<input type="date" id="release_date" name="release_date" value="<%= info.release_date %>" required>
+					<input type="date" id="release_date" name="release_date" value="<%= locals.old && old.
+					release_date ? old.release_date : info.release_date %>" required>
 					<br><br>
                     <label for="imagen">Imagen:</label>
-					<input type="text" id="imagen" name="imagen" accept="image/*" value="image/<%= info.title %>" required>
+					<input type="text" id="image" name="image" accept="image/*" value="<%= locals.old && old.
+					image ? old.image : info.image %>" required>
 					<br><br>
 					<label for="descripcion">Descripción:</label>
-					<textarea id="descripcion" name="descripcion" rows="4" required><%= info.description %></textarea>
+					<textarea id="description" name="description" rows="4" required><%= locals.old && old.
+					description ? old.description : info.description %></textarea>
 					<br><br>
 					<button type="submit">Editar Producto</button>
 				</form>

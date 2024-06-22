@@ -6,14 +6,9 @@ const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
 
 let usersController = {
-    miPerfil: function(req, res) {
-        if (!req.session.user) {
-            return res.redirect("/login");
-        }
-        return res.render("profile", { "info": req.session.user }); 
-    },
 
-    generalOther: function(req, res) {
+    general: function(req, res) {
+        if(req.params.id){
         db.User.findByPk(req.params.id,{
             include: [{association:"products"}],
             order: [["createdAt", "ASC"]]
@@ -24,13 +19,35 @@ let usersController = {
                 if (!data.products) {
                     data.products = [];
                 };
-                return res.render("profile-other", {info: data});
+                return res.render("profile", {info: data});
+            }
+            else{
+                res.redirect("/")
             }
         })
 
         .catch(function(error){
             return console.log(error)
-        }) 
+        })
+        } else{
+            if (!req.session.user) {
+                return res.redirect("/profile/login");
+            } else{
+                db.User.findByPk(req.session.user.id,{
+                    include: [{association:"products"}],
+                    order: [["createdAt", "ASC"]]
+                })
+                .then(function(data){
+                    if (data) {
+                        if (!data.products) {
+                            data.products = [];
+                        };
+                        return res.render("profile", {info: data});
+                    }
+                })
+            }
+
+        } 
     },
 
     register: function(req,res){
@@ -68,7 +85,7 @@ let usersController = {
      },
        
     login: function(req,res){
-        if (req.session.user != undefined) {
+        if (req.session.user) {
             return res.redirect("/");
         } else {
             return res.render("login")
@@ -83,6 +100,7 @@ let usersController = {
     
         db.User.findOne(filtro)
             .then(function(user) {
+                // Actualizar para que en vez de renderizarlo el error sea mandado a la página del login como mensaje en la vista
                 if (!user) {
                     return res.send("No existe un usuario con este email " + informacion.email);
                 }
@@ -155,7 +173,7 @@ let usersController = {
 
         } else {
             
-            // hacer que aparescan los errores si ingresa mal los datos
+            // hacer que aparezcan los errores si ingresa mal los datos
         }
 
     },

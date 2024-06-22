@@ -17,7 +17,7 @@
     <!-- Header --> 
     <% if (usuarioLogueado) { %>
         <%- include("partials/headerLogueado.ejs") %>
-        <h2>Bienvenido, <%= usuarioLogueado.username %>!</h2>
+        <h2 style="text-align: center;">Bienvenido, <%= usuarioLogueado.username %>!</h2>
     <% } else { %>
         <%- include("partials/headerNormal.ejs") %>
     <% } %>
