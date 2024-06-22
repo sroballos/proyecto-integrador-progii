@@ -113,7 +113,7 @@ let product = {
     addComment: function(req,res) {
 
         console.log("lleguee")
-        return res.render("/profile");
+        return res.render("/product");
 
 
     },
