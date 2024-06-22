@@ -112,10 +112,25 @@ let product = {
 
     addComment: function(req,res) {
 
-        console.log("lleguee")
-        return res.render("/product");
+        if (!req.session.user) {
+            return res.redirect('/profile/login');
+        }
 
+        let newComment = {
+            coment: req.body.coment,
+            id_user: req.session.user.id,
+            id_products: req.params.id,
+            createdAt: new Date().toLocaleString()
+        };
 
+        db.Comment.create(newComment)
+            .then(function(comment) {
+                return res.redirect(`/product/${req.params.id}`);
+            })
+            .catch(function(error) {
+                console.log("Error al agregar el comentario", error);
+                return res.status(500).send("Error al agregar el comentario");
+            });
     },
 
     editProduct: function(req,res){
