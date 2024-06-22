@@ -9,26 +9,30 @@ let usersController = {
 
     general: function(req, res) {
         if(req.params.id){
-        db.User.findByPk(req.params.id,{
-            include: [{association:"products"}],
-            order: [["createdAt", "ASC"]]
-        })
-        
-        .then(function(data) {
-            if (data) {
-                if (!data.products) {
-                    data.products = [];
-                };
-                return res.render("profile", {info: data});
-            }
-            else{
-                res.redirect("/")
-            }
-        })
+            db.User.findByPk(req.params.id,{
+                include: [{association:"products"}],
+                order: [["createdAt", "ASC"]]
+            })
+            
+            .then(function(data) {
+                if (data) {
+                    if (!data.products) {
+                        data.products = [];
+                    };
+                    if(req.session.user && req.session.user.id == req.params.id){
+                        return res.render("profile", {info: data, isOwner: true});
+                    } else{
+                        return res.render("profile", {info:data, isOwner: false})
+                    }
+                }
+                else{
+                    res.redirect("/")
+                }
+            })
 
-        .catch(function(error){
-            return console.log(error)
-        })
+            .catch(function(error){
+                return console.log(error)
+            })
         } else{
             if (!req.session.user) {
                 return res.redirect("/profile/login");
@@ -42,7 +46,7 @@ let usersController = {
                         if (!data.products) {
                             data.products = [];
                         };
-                        return res.render("profile", {info: data});
+                        return res.render("profile", {info: data, isOwner:true});
                     }
                 })
             }

@@ -18,8 +18,11 @@
 				</div>
 				<div>
 					<ul class="">
-						<% if (info !== -1 && info.products) { %>	
+						<% if (info !== -1) { %>	
 							<li><strong><%= info.username %></strong></li>
+							<% if(isOwner){ %>
+							<li><a href="/profile/edit/"><strong>Editar Perfil</strong></a></li>
+							<% } %>
 							<li><%= info.products.length %> productos</li>
 							<li>0 seguidores</li>
 							<li>y comentarios</li>
