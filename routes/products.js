@@ -11,7 +11,8 @@ const validacionesEdicionCreacion = [
     body("description").notEmpty().withMessage("Por favor, inserte una descripción.")
 ]
 
-router.get('/edit/:id', productController.edit);
+router.get('/edit/:id?', productController.edit);
+router.get('/delete/:id?', productController.delete);
 
 router.get('/create', productController.create);
 router.post('/store', validacionesEdicionCreacion, productController.store);
@@ -22,6 +23,7 @@ router.get('/:id?', productController.general);
 router.post("/addComment", productController.addComment);
 
 router.post("/edit", validacionesEdicionCreacion, productController.editProduct);
+router.post('/delete', productController.deleteProduct);
 
 
 module.exports = router;

@@ -12,7 +12,13 @@ let product = {
         })
         .then(function(data){
             if (data){
-            return res.render("product", {info:data})} 
+                if(req.session.user && req.session.user.id == data.user.id){
+                    return res.render("product", {info:data, isOwner: true})}
+                else{
+                    return res.render("product", {info:data, isOwner: false})
+                }
+                } 
+
             else{
             return res.render("product", {info:-1})
             }
@@ -35,15 +41,39 @@ let product = {
         }
     },
     edit: function(req,res){
-        db.Product.findByPk(req.params.id,{
-            include: [{association:"user"}]
-        })
-        .then(function(data){
-            return res.render("product-edit", {info:data})
-        })
-        .catch(function(error){
-            return console.log(error)
-        })
+        if(req.params.id){
+            db.Product.findByPk(req.params.id,{
+                include: [{association:"user"}]
+            })
+            .then(function(data){
+                return res.render("product-edit", {info:data})
+            })
+            .catch(function(error){
+                return console.log(error)
+            })
+        }else{
+            res.redirect("/")
+        }
+    },
+    delete: function(req,res){
+        if(req.params.id){
+            db.Product.findByPk(req.params.id,{
+                include: [{association:"user"}]
+            })
+            .then(function(data){
+                if(req.session.user && req.session.user.id == data.user.id){
+                    return res.render("product-delete", {info:data})
+                } else{
+                    return res.redirect("/")
+                }
+                
+            })
+            .catch(function(error){
+                return console.log(error)
+            })
+        }else{
+            res.redirect("/")
+        }
     },
     search: function(req, res) {
         let searchTerm = req.query.search || '';
@@ -160,6 +190,17 @@ let product = {
                     old: req.body
                 });
         } 
+    },
+
+    deleteProduct: function(req,res){
+            db.Product.destroy({where:{ id : req.body.id }})
+                .then(function(){
+                    return res.redirect("/");
+                })
+                .catch(function(err){
+                    console.log("Error al eliminar el producto", err);
+                    return res.status(500).send("Error al eliminar el producto");
+                });
     }
 };
 

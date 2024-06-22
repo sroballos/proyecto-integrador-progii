@@ -1,0 +1,30 @@
+<%- include("partials/headerLogueado.ejs") %>
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Eliminar producto</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+			<div class="col-12">
+				<% if (locals.errors){ for(let i = 0; i < locals.errors.length; i++){ %>
+					<p class="feedback is=danger"> <%= locals.errors[i].msg %></p>
+				<%  } } %>
+				<form action="/product/delete" method="POST">
+                    <input type="hidden" id="id" name="id" value="<%= info.id %>" required>
+					<label>Estás seguro/a?</label>
+					<br><br>
+					<button type="submit">Eliminar Producto</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+<!-- footer -->
+<%- include("partials/footer.ejs") %>
+<!-- /footer -->
+</body>
+
+</html>

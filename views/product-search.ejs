@@ -1,12 +1,12 @@
 <%- include("partials/headerLogueado.ejs") %>
 
-<h1>Resultados de búsqueda para "<%= searchTerm %>"</h1>
+<h1 style="text-align: center;">Resultados de búsqueda para "<%= searchTerm %>"</h1>
 
 <% if (products.length > 0) { %>
     <div class="product-search-results">
         <% products.forEach(function(product) { %>
             <div class="product-item">
-                <img src="<%= product.image %>" alt="<%= product.title %>" class="product-image">
+                <img src="/images/products/<%= product.image %>" alt="<%= product.title %>" class="product-image">
                 <div class="product-details">
                     <a href="/product/<%= product.id %>" class="product-title"><%= product.title %></a>
                     <p class="product-description"><%= product.description %></p>
@@ -20,7 +20,7 @@
         <% }); %>
     </div>
 <% } else { %>
-    <h2>No hay resultados para su criterio de búsqueda</h2>
+    <h2 style="text-align: center;">No hay resultados para su criterio de búsqueda</h2>
 <% } %>
 
 <!-- footer -->

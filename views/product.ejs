@@ -8,9 +8,14 @@
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= info.title %></h2> 
+			<% if(isOwner){ %> 
 			<p class="product-detail-description">
-				<a href="/product/edit/<%= info.id %>">Editar</a>
+				<a href="/product/edit/<%= info.id %>">Editar </a>
 			</p>
+			<p class="product-detail-description">
+				<a href="/product/delete/<%= info.id %>">Eliminar</a>
+			</p>
+			<% } %>
 		</div>
 		<div class="product-detail">
 			<div class="row">
@@ -19,6 +24,9 @@
 					<img src="/images/products/<%= info.image %>" alt="<%= info.title %>" class="product-detail-img">
 					<p class="product-detail-description">
 						Fecha de Publicación: <%= info.release_date %>
+					</p>
+					<p class="product-detail-description">
+						Dueño: <a href="/profile/<%= info.user.id %>"><strong><%= info.user.username %></strong></a>
 					</p>
 					<p class="product-detail-description">
 						<%= info.description %>

@@ -51,7 +51,11 @@ let usersController = {
     },
 
     register: function(req,res){
-            return res.render("register");
+            if(req.session.user){
+                res.redirect("/")
+            } else{
+                return res.render("register");
+            }
     },
 
     registerStore: function(req, res) {
@@ -117,8 +121,10 @@ let usersController = {
                         profilePic: user.profilePic
                     };
 
-                    if(informacion.remember !== undefined){
-                        res.cookie("idUsuario",user.id,{ maxAge: 1000 * 60 * 15})
+                    if(informacion.remember){
+                        res.cookie("idUsuario",user.id,{ maxAge: 1000 * 60 * 15});
+                    } else{
+                        res.cookie("idUsuario",user.id);
                     }
                     return res.redirect("/"); 
                 } else {
@@ -183,9 +189,10 @@ let usersController = {
             if (err) {
                 console.log(err);
                 return res.status(500).send("Error al cerrar sesión.");
+            } else{
+                res.clearCookie('session_id');
+                res.redirect('/');
             }
-            res.clearCookie('session_id');
-            res.redirect('/');
         });
     },
 
