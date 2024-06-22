@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 let info = require("../db/info")
-const db = require("../database/models");
+let db = require("../database/models");
 const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
 
@@ -61,7 +61,7 @@ let usersController = {
 
         } else {
             res.render("register", {
-                    errors: errors.mapped(),
+                    errors: errors.array(),
                     old: req.body
                 });
         }           
@@ -102,7 +102,7 @@ let usersController = {
                     if(informacion.remember !== undefined){
                         res.cookie("idUsuario",user.id,{ maxAge: 1000 * 60 * 15})
                     }
-                    return res.redirect("/"); // Redirigir a la página principal después de iniciar sesión
+                    return res.redirect("/"); 
                 } else {
                     return res.send("La contraseña es incorrecta, vuelva a ingresarla");
                 }

@@ -10,7 +10,7 @@ const bcryptjs = require("bcryptjs");
 const validacionesRegister = [
 
     body("username")
-      .notEmpty().withMessage("Debes completar este campo").bail()
+      .notEmpty().withMessage("Por favor, inserte un nombre de usuario").bail()
       .isAlpha().withMessage("Tu usuario debe contener solo letras"),
 
     body("email")
@@ -27,12 +27,11 @@ const validacionesRegister = [
         }),
 
   body("passW")
-    .notEmpty().withMessage("Debes completar este campo").bail()
+    .notEmpty().withMessage("Por favor, inserte una contraseña").bail()
     .isLength({ min: 4 }).withMessage("Tu contraseña debe contener al menos 4 caracteres")
 
 ];
 
-// validaciones login
 const validacionesLogin = [
 
     body("email")

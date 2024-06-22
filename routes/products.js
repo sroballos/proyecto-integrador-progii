@@ -13,7 +13,7 @@ const validacionesEdicionCreacion = [
 
 router.get('/edit/:id', productController.edit);
 
-router.get('/add', productController.add);
+router.get('/create', productController.create);
 router.post('/store', validacionesEdicionCreacion, productController.store);
 
 router.get('/search', productController.search);

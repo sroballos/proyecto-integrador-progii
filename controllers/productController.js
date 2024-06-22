@@ -12,7 +12,8 @@ let product = {
         })
         .then(function(data){
             if (data){
-            return res.render("product", {info:data})} else{
+            return res.render("product", {info:data})} 
+            else{
             return res.render("product", {info:-1})
             }
         })
@@ -20,8 +21,18 @@ let product = {
             return console.log(error)
         })
     },
-    add: function(req,res){
-        return res.render("product-add", {"info": info})
+    create: function (req, res) {
+        if (req.session.user == undefined) {
+            return res.redirect('/profile/login');
+        } else {
+            db.User.findAll()
+                .then(function(data) {
+                    return res.render('product-add', { users: data });
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+        }
     },
     edit: function(req,res){
         db.Product.findByPk(req.params.id,{
@@ -59,9 +70,12 @@ let product = {
         });
     },
 
-    store: function(req, res) {
-        let errors = validationResult(req);
-    
+    store: function (req, res) {
+        console.log(req.body);
+        if (!req.session.user) {
+            return res.redirect('/profile/login');
+        }
+        const errors = validationResult(req);
         if (errors.isEmpty()) {
             let product = {
                 title: req.body.title,
@@ -71,23 +85,29 @@ let product = {
                 description: req.body.description,
                 createdAt: new Date().toLocaleString(),
                 user_id: req.session.user.id
-        };
+            };
     
-        db.Product.create(product)
-            .then(function(newProduct) {
-                console.log("Producto agregado:", newProduct);
-                return res.redirect("/profile/miPerfil"); 
-            })
-            .catch(function(error) {
-                console.error("Error al agregar el producto:", error);
-                return res.status(500).send("Error al agregar el producto");
-            });
-        } else {
-            res.render("product-add", {
-                    errors: errors.mapped(),
-                    old: req.body
+            db.Product.create(product)
+                .then(function(newProduct) {
+                    return res.redirect('/profile/miPerfil');
+                })
+                .catch(error => {
+                    console.log(error);
                 });
-        }           
+         } else { 
+             db.User.findAll()
+                .then(data => {
+                    return res.render('product-add', {
+                        users: data,
+                        errors: errors.array(),
+                        old: req.body,
+                    });
+                })
+                .catch(errors => {
+                    console.log(errors);
+                })
+            return;
+        }
      },
 
     addComment: function(req,res) {

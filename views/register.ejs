@@ -6,10 +6,11 @@
         <div class="col-12">
             <h2>Registrarse</h2>
 
-			<% if (locals.errors) {
-				for(let i = 0; i <= locals.errors.length; i++){ %>
-				<p class="feedback is=danger"> <%= locals.errors[i].msg %></p>
-			<%  } } %>
+			<% if (locals && locals.errors) { %>	
+				<% for (let error in errors) { %>
+					<p class="errores"> <%= errors[error].msg %> </p>
+				<% } %>
+			<% } %>
 
 			<form action="/profile/register" method="POST">
 				<div>
@@ -72,3 +73,9 @@
 </div>
 
 <%- include("partials/footer.ejs") %>
+<style>
+	.errores {
+        font-size: 18px;
+        color: #ad1a1a;
+    }
+</style>
