@@ -145,17 +145,17 @@ let product = {
         if (!req.session.user) {
             return res.redirect('/profile/login');
         }
-
+        
         let newComment = {
             coment: req.body.coment,
-            id_user: req.session.user.id,
-            id_products: req.params.id,
+            id_user: req.body.user.id,
+            id_products: req.session.id_products,
             createdAt: new Date().toLocaleString()
         };
 
         db.Comment.create(newComment)
             .then(function(comment) {
-                return res.redirect(`/product/${req.params.id}`);
+                return res.redirect("product");
             })
             .catch(function(error) {
                 console.log("Error al agregar el comentario", error);
