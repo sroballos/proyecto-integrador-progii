@@ -101,6 +101,7 @@ let usersController = {
     },
 
     loginProcess: function (req, res) {
+        let errors = validationResult(req);
         let informacion = req.body;
         let filtro = {
             where: { email: informacion.email }
