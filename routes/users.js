@@ -6,7 +6,6 @@ const db = require("../database/models");
 const bcryptjs = require("bcryptjs");
 
 
-// validaciones register
 const validacionesRegister = [
 
     body("username")
