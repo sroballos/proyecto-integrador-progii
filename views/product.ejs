@@ -52,7 +52,7 @@
 
 					<% if (usuarioLogueado !== null) { %>
 					<form class="form" action="/product/addComment" method="POST">
-						 
+						 <input type="hidden" name="id_producto" value="<% product.id %>>">
 						 <input class="form-input" type="text" name="newComment" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
