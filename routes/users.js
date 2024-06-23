@@ -66,6 +66,8 @@ const validacionesLogin = [
         })
   ];
 
+  
+
 
   router.get('/register', controller.register);
   router.post('/register', validacionesRegister, controller.registerStore);
@@ -77,6 +79,7 @@ const validacionesLogin = [
   router.post('/logout', controller.logout);
 
   router.get('/edit', controller.edit);
+  
 
   router.get('/:id?', controller.general);
   

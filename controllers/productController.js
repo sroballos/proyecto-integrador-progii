@@ -142,25 +142,27 @@ let product = {
 
     addComment: function(req,res) {
 
-        if (!req.session.user) {
+        if (req.session.user == undefined) {
             return res.redirect('/profile/login');
-        }
-        
-        let newComment = {
-            coment: req.body.coment,
-            id_user: req.body.user.id,
-            id_products: req.session.id_products,
-            createdAt: new Date().toLocaleString()
+        } else {
+            
+
+            let newComment = {
+                id_user: req.session.user.id,
+                id_products: req.session.product.id,
+                coment: req.body.newComment
         };
 
         db.Comment.create(newComment)
             .then(function(comment) {
-                return res.redirect("product");
+                return res.redirect("/product/id/" + req.body.id_products);
             })
             .catch(function(error) {
                 console.log("Error al agregar el comentario", error);
                 return res.status(500).send("Error al agregar el comentario");
             });
+
+        }
     },
 
     editProduct: function(req,res){

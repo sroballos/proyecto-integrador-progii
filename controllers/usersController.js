@@ -183,7 +183,10 @@ let usersController = {
 
         } else {
             
-            // hacer que aparezcan los errores si ingresa mal los datos
+            res.render("profile-edit", {
+                errors: errors.array(),
+                old: req.body
+            });
         }
 
     },
