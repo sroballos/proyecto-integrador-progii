@@ -133,7 +133,10 @@ let usersController = {
                     }
                     return res.redirect("/"); 
                 } else {
-                    return res.send("La contraseña es incorrecta, vuelva a ingresarla");
+                    res.render("login", {
+                        errors: errors.array(),
+                        old: req.body
+                    });
                 }
             })
             .catch(function (err) {
