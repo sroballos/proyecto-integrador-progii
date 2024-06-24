@@ -133,8 +133,8 @@ let usersController = {
                     }
                     return res.redirect("/"); 
                 } else {
-                    res.render("login", {
-                        errors: errors.array(),
+                    return res.render("login", {
+                        errors: errors.mapped(),
                         old: req.body
                     });
                 }
@@ -154,7 +154,6 @@ let usersController = {
     storeEdit: function(req,res){
         let informacion = req.body;
         let errors = validationResult(req);
-        
         if (errors.isEmpty()) {
             let user = {
                 username: req.body.username,
@@ -186,9 +185,8 @@ let usersController = {
                 });
 
         } else {
-            
-            res.render("profile-edit", {
-                errors: errors.array(),
+            return res.render("profile-edit", {
+                errors: errors.mapped(),
                 old: req.body
             });
         }

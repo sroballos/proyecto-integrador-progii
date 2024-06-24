@@ -10,7 +10,17 @@ const validacionesRegister = [
 
     body("username")
       .notEmpty().withMessage("Por favor, inserte un nombre de usuario").bail()
-      .isAlpha().withMessage("Tu usuario debe contener solo letras"),
+      .isAlpha().withMessage("Tu usuario debe contener solo letras")
+      .custom(function(value, {req}){
+        return db.User.findOne({
+              where: { username: req.body.username },
+            })
+             .then(function (user){
+                if (user){
+                    throw new Error("Este nombre de usuario ya está en uso, probá con otro");
+                    }
+            })
+        }),
 
     body("email")
       .isEmail().withMessage("Debes completar un email válido").bail()
@@ -27,8 +37,10 @@ const validacionesRegister = [
 
   body("passW")
     .notEmpty().withMessage("Por favor, inserte una contraseña").bail()
-    .isLength({ min: 4 }).withMessage("Tu contraseña debe contener al menos 4 caracteres")
-
+    .isLength({ min: 4 }).withMessage("Tu contraseña debe contener al menos 4 caracteres"),
+  
+  body("dateBorn")
+    .notEmpty().withMessage("Por favor, inserte una fecha de nacimiento")
 ];
 
 const validacionesLogin = [
@@ -64,9 +76,7 @@ const validacionesLogin = [
             })
         })
   ];
-
   
-
 
   router.get('/register', controller.register);
   router.post('/register', validacionesRegister, controller.registerStore);
@@ -82,7 +92,7 @@ const validacionesLogin = [
 
   router.get('/:id?', controller.general);
   
-  router.post("/edit" , controller.storeEdit)
+  router.post("/edit", controller.storeEdit)
 
 
 

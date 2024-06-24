@@ -6,10 +6,10 @@
             <h2>Ingresar</h2>
 
             <% if (locals && locals.errors) { %>	
-				<% for (let error in errors) { %>
-					<p class="errores"> <%= errors[error].msg %> </p>
-				<% } %>
-			<% } %>
+                <% for (let error in errors) { %>
+                    <p class="errores"> <%= errors[error].msg %> </p>
+                <% } %>
+            <% } %>
 
             <form action="/profile/login" method="POST">
                 <div class="form-group">
