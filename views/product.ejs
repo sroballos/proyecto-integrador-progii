@@ -36,23 +36,23 @@
 					<section class="comments">
 						<% for (j=0; j < info.comments.length; j++){ %>
 						<article>
-							<% if (info.comments[j].commentUser.profilepic){ %>
-							<img src="/images/users/<%= info.comments[j].commentUser.profilepic %>" alt="User PFP">
+							<% if (info.comments[j].commentUser.profilePic){ %>
+							<img src="/images/users/<%= info.comments[j].commentUser.profilePic %>" alt="User PFP">
 							<% } else{ %>
 								<img src="https://via.placeholder.com/35" alt="User PFP">
 							<% } %>
 							<div class="data">
 								<p class="user">
-									<strong> <a href="/profile/<%= info.comments[j].id_user %>"><%= info.comments[j].commentUser.email %> </a> </strong>
+									<strong> <a href="/profile/<%= info.comments[j].id_user %>"><%= info.comments[j].commentUser.username %> </a> </strong>
 									<%= info.comments[j].coment %></p>
 							</div>
 						</article>
 						<% } %>
 					</section>
 
-					<% if (usuarioLogueado !== null) { %>
+					<% if (usuarioLogueado) { %>
 					<form class="form" action="/product/addComment" method="POST">
-						<input type="hidden" name="id_products" value="<% info.id %>>">
+						<input type="hidden" name="id_products" value="<%= info.id %>">
 						 <input class="form-input" type="text" name="newComment" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>

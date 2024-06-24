@@ -140,22 +140,19 @@ let product = {
      },
 
     addComment: function(req,res) {
-        console.log("llegueee", req.session.user == undefined)
-        if (req.session.user !== undefined) {
+        if (!req.session.user) {
             return res.redirect('/profile/login');
         } else {
-            console.log("llegue 2", newComment)
             let form = req.body
-
             let newComment = {
                 id_user: req.session.user.id,
-                id_products: form.product.id,
+                id_products: form.id_products,
                 coment: form.newComment
-        };
+            };
         
         db.Comment.create(newComment)
             .then(function(comment) {
-                return res.redirect("/product/id/" + form.id_products);
+                return res.redirect("/product/" + form.id_products);
             })
             .catch(function(error) {
                 console.log("Error al agregar el comentario", error);
