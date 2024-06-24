@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2>Ingresar</h2>
+            <h2 class="ingresar">Ingresar</h2>
 
             <% if (locals && locals.errors) { %>	
                 <% for (let error in errors) { %>
@@ -20,7 +20,7 @@
                     <label for="passW">Contraseña:</label>
                     <input type="password" id="passW" name="passW" >
                 </div>
-                <div class="form-group">
+                <div class="form-groupRemember">
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Recordarme</label>
                 </div>

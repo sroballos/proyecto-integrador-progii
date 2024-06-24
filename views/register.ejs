@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2>Registrarse</h2>
+            <h2 class="registrarse">Registrarse</h2>
 
 			<% if (locals && locals.errors) { %>	
 				<% for (let error in errors) { %>
@@ -13,7 +13,7 @@
 			<% } %>
 
 			<form action="/profile/register" method="POST">
-				<div>
+				<div class="form-group">
 
 					<label for="username">Nombre de usuario:</label>
 					<input type="text" name="username" 
@@ -22,7 +22,7 @@
 				
 				</div>
 
-				<div>
+				<div class="form-group">
 
 					<label for="email">Email:</label>
 					<input type="email" name="email" 
@@ -31,14 +31,14 @@
 
 				</div>
 				
-				<div>
+				<div class="form-group">
 
 					<label for="passW">Contraseña:</label>
 					<input type="password" name="passW" id="passW">
 					
 				</div>
 
-				<div>
+				<div class="form-group">
 
 					<label for="dateBorn">Fecha de nacimiento:</label>
 					<input type="date" name="dateBorn"
@@ -47,7 +47,7 @@
 
 				</div>
 
-				<div>
+				<div class="form-group">
 
 					<label for="dni">DNI:</label>
 					<input type="number" name="dni" 
@@ -56,7 +56,7 @@
 
 				</div>
 
-				<div>
+				<div class="form-group">
 
 					<label for="profilePic">Foto de perfil (URL):</label>
 					<input type="text" name="profilePic"
@@ -73,9 +73,3 @@
 </div>
 
 <%- include("partials/footer.ejs") %>
-<style>
-	.errores {
-        font-size: 18px;
-        color: #ad1a1a;
-    }
-</style>

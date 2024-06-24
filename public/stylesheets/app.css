@@ -535,4 +535,60 @@ textarea.form-input {
     width: 95%;
     margin: auto;
   }
+
+  .errores {
+    font-size: 18px;
+    color: #ad1a1a;
+  }
+ 
+  .form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="date"],
+.form-group input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-group button:hover {
+    background-color: #218838;
+}
+
+.registrarse{
+  font-size: 20px;
+}
+
+.form-groupRemember{
+  font-size: 15px;
+}
+
+.ingresar{
+  font-size: 20px;
+}
+  
 }
