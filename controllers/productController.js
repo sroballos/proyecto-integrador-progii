@@ -120,19 +120,19 @@ let product = {
                 .then(function(newProduct) {
                     return res.redirect('/profile/');
                 })
-                .catch(error => {
+                .catch(function(error) {
                     console.log(error);
                 });
          } else { 
              db.User.findAll()
-                .then(data => {
+                .then(function(data) {
                     return res.render('product-add', {
                         users: data,
                         errors: errors.array(),
                         old: req.body,
                     });
                 })
-                .catch(errors => {
+                .catch(function(errors) {
                     console.log(errors);
                 })
             return;
