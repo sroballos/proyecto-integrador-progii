@@ -109,7 +109,6 @@ let usersController = {
     
         db.User.findOne(filtro)
             .then(function(user) {
-                // Actualizar para que en vez de renderizarlo el error sea mandado a la página del login como mensaje en la vista
                 if (!user) {
                     return res.send("No existe un usuario con este email " + informacion.email);
                 }
